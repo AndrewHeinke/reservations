@@ -1,77 +1,64 @@
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CoolRestaurant - reserveTable</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <style>
-            body {
-                padding-top: 50px;
-                padding-bottom: 20px;
-            }
-        </style>
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="container content-container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"> Reserve Table </h3>
+            </div>
+            <div class="panel-body">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter Name">
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Reservation Time</label>
+                        <input type="text" class="form-control" id="time" placeholder="7:30pm">
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number</label>
+                        <input type="text" class="form-control" id="phoneNumber" placeholder="(512) 999-9999">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="example@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="uniqueId">Unique Id</label>
+                        <input type="text" class="form-control" id="uniqueId" placeholder="Description">
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
-        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-    </head>
-    <body>
-
-	<div class="container">
-
-		<div class="jumbotron">
-			<h1 class="text-center"><span class="glyphicon glyphicon-fire"></span> Hot Restaurant</h1>
-			<hr>
-			<h2 class="text-center">Current Reservations and Waiting List</h2>
-			<br>
-
-			<div class="text-center">
-				<a href="/reserve"><button type="button" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-credit-card"></span> Make Reservation</button></a>
-				<a href="/"><button type="button" class="btn btn-lg btn-default"><span class="glyphicon glyphicon-home"></span></button></a>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-lg-12">
-
-				<!-- Current Tables in Use -->
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4 class="panel-title">Current Reservations</h4>
-					</div>
-					<div class="panel-body" id="tableSection">
-					</div>
-				</div>
-
-				<!-- Waiting List Panel -->
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h4 class="panel-title">Waiting List</h4>
-					</div>
-					<div class="panel-body" id="waitlistSection">
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-	    <footer class="footer">
-	      <div class="container">
-	      	<p>Control Panel</p>
-	        <p><a href="#" id="clear">Clear Table</a> | <a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a></p>
-	      </div>
-	    </footer>
-
-	</div>
+	<script type="text/javascript">
+		$('#addBtn').on("click", function(){
+			var newCustomer =
+			{
+				customerName: $("#name").val().trim(),
+				phoneNumber: $("#number").val().trim(),
+				customerEmail: $("#email").val().trim(),
+				customerID: $("#userID").val().trim()
+			};
+			$.post("http://localhost:3000/api/new", newCustomer)
+				.done(function(data){
+					console.log(data);
+					alert("Adding reservation...")
+				})
+			return false;
+		});
+	</script>
 
 </body>
-
 </html>
